@@ -1,0 +1,11 @@
+inherited frmModelConsulta1: TfrmModelConsulta1
+  Caption = 'frmModelConsulta1'
+  ClientWidth = 717
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 717
+  end
+  inherited bancoGrid: TDBGrid
+    Width = 717
+  end
+end

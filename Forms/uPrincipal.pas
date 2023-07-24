@@ -18,6 +18,7 @@ type
     Produtos1: TMenuItem;
     procedure Cliente1Click(Sender: TObject);
     procedure Fornecedor1Click(Sender: TObject);
+    procedure Produtos1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,7 +33,7 @@ implementation
 {$R *.dfm}
 
 uses uCadastroCliente, uConsultaCliente, uConsultaFornecedor,
-  uCadastroFornecedor;
+  uCadastroFornecedor, uCadastroProduto, UConsultaProduto;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
@@ -46,6 +47,13 @@ begin
 frmCadastroFornecedor.Show;
 frmCadastroFornecedor.Visible:=False;
 frmConsultaFornecedor.Show;
+end;
+
+procedure TfrmPrincipal.Produtos1Click(Sender: TObject);
+begin
+frmCadastroProduto.Show;
+frmCadastroProduto.Visible:=False;
+frmConsultaProduto.Show;
 end;
 
 end.

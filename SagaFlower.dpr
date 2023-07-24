@@ -9,13 +9,18 @@ uses
   uModelConsulta in 'Forms\Model\uModelConsulta.pas' {frmModelConsulta},
   uConsultaCliente in 'Forms\uConsultaCliente.pas' {frmConsultaCliente},
   uConsultaFornecedor in 'Forms\uConsultaFornecedor.pas' {frmConsultaFornecedor},
-  uCadastroFornecedor in 'Forms\uCadastroFornecedor.pas' {frmCadastroFornecedor};
+  uCadastroFornecedor in 'Forms\uCadastroFornecedor.pas' {frmCadastroFornecedor},
+  uCadastroProduto in 'Forms\uCadastroProduto.pas' {frmCadastroProduto},
+  UConsultaProduto in 'Forms\UConsultaProduto.pas' {frmConsultaProduto},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Light');
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmDataModule, frmDataModule);
   Application.CreateForm(TfrmModelCadastro, frmModelCadastro);
@@ -24,5 +29,7 @@ begin
   Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
   Application.CreateForm(TfrmConsultaFornecedor, frmConsultaFornecedor);
   Application.CreateForm(TfrmCadastroFornecedor, frmCadastroFornecedor);
+  Application.CreateForm(TfrmCadastroProduto, frmCadastroProduto);
+  Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
   Application.Run;
 end.

@@ -58,6 +58,7 @@
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <SanitizedProjectName>SagaFlower</SanitizedProjectName>
+        <Custom_Styles>Light|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Light.vsf</Custom_Styles>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FmxTeeUI;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;ZPlain;ZComponent;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;Tee;RESTComponents;DBXSqliteDriver;vcl;vclactnband;TeeUI;IndyIPServer;fmxFireDAC;dbexpress;dsnapxml;dsnapcon;soapmidas;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;dbrtl;ZDbc;bindcompvcl;dsnap;fmxdae;TeeDB;CloudService;FireDACMSAccDriver;CustomIPTransport;ZCore;fmxobj;bindcompvclsmp;FMXTee;ZParseSql;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -131,6 +132,14 @@
         </DCCReference>
         <DCCReference Include="Forms\uCadastroFornecedor.pas">
             <Form>frmCadastroFornecedor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Forms\uCadastroProduto.pas">
+            <Form>frmCadastroProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Forms\UConsultaProduto.pas">
+            <Form>frmConsultaProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
