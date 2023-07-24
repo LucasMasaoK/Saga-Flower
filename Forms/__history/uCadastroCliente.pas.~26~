@@ -49,8 +49,7 @@ type
     Label12: TLabel;
     DBEdit12: TDBEdit;
     procedure FormShow(Sender: TObject);
-    procedure editTelefoneEnter(Sender: TObject);
-    procedure btnNovoClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,27 +63,27 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroCliente.btnNovoClick(Sender: TObject);
-begin
-  inherited;
- editTelefone.Field.EditMask:='(00) 0 0000-0000' ;
-editCpf.Field.EditMask:='000.000.000-00';
-end;
+uses uModelConsulta, uConsultaCliente;
 
-procedure TfrmCadastroCliente.editTelefoneEnter(Sender: TObject);
+
+
+
+
+procedure TfrmCadastroCliente.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-;
+frmConsultaCliente.Show;
 end;
 
 procedure TfrmCadastroCliente.FormShow(Sender: TObject);
 begin
-  inherited;
-   editTelefone.Field.EditMask:='(00) 0 0000-0000' ;
-editCpf.Field.EditMask:='000.000.000-00';
-bancoQueryCadastro.Active:=True;
 
+if frmModelConsulta.sqlID>0 then
+begin
+bancoQueryCadastro.Open;
+bancoQueryCadastro.Locate('ID_CLIENTE',frmModelConsulta.sqlID,[]);
 end;
 
+end;
 end.
 

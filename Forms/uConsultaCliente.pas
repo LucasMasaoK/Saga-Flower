@@ -55,8 +55,8 @@ begin
   if bancoConsulta.RecordCount > 0 then
   begin
     frmModelConsulta.sqlID := bancoConsultaID_CLIENTE.AsInteger;
- 
-    frmCadastroCliente.ShowModal;
+    frmConsultaCliente.Visible:=False;
+    frmCadastroCliente.Show;
   end
 
 end;

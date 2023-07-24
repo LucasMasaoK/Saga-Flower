@@ -175,8 +175,9 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited Panel1: TPanel
     Top = 368
     Width = 705
-    ExplicitTop = 359
-    ExplicitWidth = 699
+    inherited btnPesquisar: TBitBtn
+      OnClick = btnPesquisarClick
+    end
   end
   object DBEdit1: TDBEdit [13]
     Left = 32
@@ -267,7 +268,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     DataField = 'TELEFONE'
     DataSource = dataSourceCadastro
     TabOrder = 9
-    OnEnter = editTelefoneEnter
   end
   object editCpf: TDBEdit [22]
     Left = 304
@@ -280,13 +280,16 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     TabOrder = 10
   end
   object DBEdit11: TDBEdit [23]
-    Left = 32
-    Top = 216
+    Left = 33
+    Top = 221
     Width = 250
     Height = 23
+    ParentCustomHint = False
     CharCase = ecUpperCase
     DataField = 'EMAIL'
     DataSource = dataSourceCadastro
+    ParentShowHint = False
+    ShowHint = False
     TabOrder = 11
   end
   object DBEdit12: TDBEdit [24]
@@ -302,7 +305,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited bancoQueryCadastro: TFDQuery
     SQL.Strings = (
       'SELECT * FROM CLIENTE;')
-    Left = 688
+    Left = 624
     Top = 272
     object bancoQueryCadastroID_CLIENTE: TIntegerField
       FieldName = 'ID_CLIENTE'
@@ -320,6 +323,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       Size = 100
     end
     object bancoQueryCadastroNUMERO: TIntegerField
+      Alignment = taCenter
       FieldName = 'NUMERO'
       Origin = 'NUMERO'
       Required = True
@@ -351,12 +355,14 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       FieldName = 'TELEFONE'
       Origin = 'TELEFONE'
       Required = True
+      EditMask = '(00) 0 0000-0000;1;_'
       Size = 16
     end
     object bancoQueryCadastroCPF: TStringField
       FieldName = 'CPF'
       Origin = 'CPF'
       Required = True
+      EditMask = '000.000.000-00;1;_'
       Size = 16
     end
     object bancoQueryCadastroEMAIL: TStringField

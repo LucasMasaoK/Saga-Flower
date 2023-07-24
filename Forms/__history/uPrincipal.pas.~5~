@@ -33,9 +33,7 @@ uses uCadastroCliente, uConsultaCliente;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
-frmCadastroCliente.Show;
-frmCadastroCliente.Visible:=False;
-frmConsultaCliente.Show;
+   frmConsultaCliente.ShowModal;
 end;
 
 end.

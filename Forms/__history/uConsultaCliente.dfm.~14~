@@ -4,7 +4,7 @@ inherited frmConsultaCliente: TfrmConsultaCliente
   Caption = 'Consulta de Clientes'
   ClientHeight = 442
   ClientWidth = 717
-  Position = poMainFormCenter
+  Position = poDesigned
   ExplicitLeft = 3
   ExplicitTop = 3
   TextHeight = 15

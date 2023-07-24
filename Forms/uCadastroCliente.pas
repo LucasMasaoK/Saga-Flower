@@ -49,6 +49,7 @@ type
     Label12: TLabel;
     DBEdit12: TDBEdit;
     procedure FormShow(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,11 +63,18 @@ implementation
 
 {$R *.dfm}
 
-uses uModelConsulta;
+uses uModelConsulta, uConsultaCliente;
 
 
 
 
+
+procedure TfrmCadastroCliente.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  frmCadastroCliente.Visible:=False;
+frmConsultaCliente.Show;
+end;
 
 procedure TfrmCadastroCliente.FormShow(Sender: TObject);
 begin

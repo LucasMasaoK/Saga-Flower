@@ -40,6 +40,8 @@ implementation
 
 {$R *.dfm}
 
+uses uCadastroCliente;
+
 procedure TfrmConsultaCliente.btnPesquisaClick(Sender: TObject);
 begin
   sqlTabela := 'CLIENTE';
@@ -52,7 +54,9 @@ begin
   inherited;
   if bancoConsulta.RecordCount > 0 then
   begin
-    sqlID := bancoConsultaID_CLIENTE.AsString;
+    frmModelConsulta.sqlID := bancoConsultaID_CLIENTE.AsInteger;
+ 
+    frmCadastroCliente.ShowModal;
   end
 
 end;

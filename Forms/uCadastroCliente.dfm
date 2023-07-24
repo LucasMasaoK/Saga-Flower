@@ -1,5 +1,8 @@
 inherited frmCadastroCliente: TfrmCadastroCliente
   Caption = 'Cadastro de Cliente'
+  ClientHeight = 443
+  ClientWidth = 705
+  Position = poMainFormCenter
   OnShow = FormShow
   TextHeight = 15
   object Label1: TLabel [0]
@@ -169,6 +172,13 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
+  end
+  inherited Panel1: TPanel
+    Top = 368
+    Width = 705
+    inherited btnPesquisar: TBitBtn
+      OnClick = btnPesquisarClick
+    end
   end
   object DBEdit1: TDBEdit [13]
     Left = 32
