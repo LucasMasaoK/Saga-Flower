@@ -1,0 +1,6 @@
+inherited frmModelCadastro1: TfrmModelCadastro1
+  Caption = 'frmModelCadastro1'
+  ExplicitWidth = 711
+  ExplicitHeight = 472
+  TextHeight = 15
+end

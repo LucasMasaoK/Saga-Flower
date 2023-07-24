@@ -7,7 +7,9 @@ uses
   uModelCadastro in 'Forms\Model\uModelCadastro.pas' {frmModelCadastro},
   uCadastroCliente in 'Forms\uCadastroCliente.pas' {frmCadastroCliente},
   uModelConsulta in 'Forms\Model\uModelConsulta.pas' {frmModelConsulta},
-  uConsultaCliente in 'Forms\uConsultaCliente.pas' {frmConsultaCliente};
+  uConsultaCliente in 'Forms\uConsultaCliente.pas' {frmConsultaCliente},
+  uConsultaFornecedor in 'Forms\uConsultaFornecedor.pas' {frmConsultaFornecedor},
+  uCadastroFornecedor in 'Forms\uCadastroFornecedor.pas' {frmCadastroFornecedor};
 
 {$R *.res}
 
@@ -20,5 +22,7 @@ begin
   Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
   Application.CreateForm(TfrmModelConsulta, frmModelConsulta);
   Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
+  Application.CreateForm(TfrmConsultaFornecedor, frmConsultaFornecedor);
+  Application.CreateForm(TfrmCadastroFornecedor, frmCadastroFornecedor);
   Application.Run;
 end.

@@ -1,0 +1,6 @@
+inherited frmConsultaFornecedor: TfrmConsultaFornecedor
+  Caption = 'Consulta de Fornecedor'
+  ExplicitWidth = 723
+  ExplicitHeight = 471
+  TextHeight = 15
+end

@@ -15,7 +15,9 @@ type
     Usuario1: TMenuItem;
     Fornecedor1: TMenuItem;
     Cliente1: TMenuItem;
+    Produtos1: TMenuItem;
     procedure Cliente1Click(Sender: TObject);
+    procedure Fornecedor1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,13 +31,21 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastroCliente, uConsultaCliente;
+uses uCadastroCliente, uConsultaCliente, uConsultaFornecedor,
+  uCadastroFornecedor;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
 frmCadastroCliente.Show;
 frmCadastroCliente.Visible:=False;
 frmConsultaCliente.Show;
+end;
+
+procedure TfrmPrincipal.Fornecedor1Click(Sender: TObject);
+begin
+frmCadastroFornecedor.Show;
+frmCadastroFornecedor.Visible:=False;
+frmConsultaFornecedor.Show;
 end;
 
 end.

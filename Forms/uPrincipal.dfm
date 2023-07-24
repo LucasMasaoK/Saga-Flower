@@ -29,10 +29,14 @@ object frmPrincipal: TfrmPrincipal
       end
       object Fornecedor1: TMenuItem
         Caption = 'Fornecedor'
+        OnClick = Fornecedor1Click
       end
       object Cliente1: TMenuItem
         Caption = 'Cliente'
         OnClick = Cliente1Click
+      end
+      object Produtos1: TMenuItem
+        Caption = 'Produtos'
       end
     end
   end

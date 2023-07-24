@@ -25,6 +25,7 @@ type
     Label1: TLabel;
     procedure btnPesquisaClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure bancoGridDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,6 +41,11 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmModelConsulta.bancoGridDblClick(Sender: TObject);
+begin
+btnSelecionar.Click;
+end;
 
 procedure TfrmModelConsulta.btnPesquisaClick(Sender: TObject);
 begin

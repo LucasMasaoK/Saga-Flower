@@ -1,0 +1,6 @@
+inherited frmModelConsulta1: TfrmModelConsulta1
+  Caption = 'frmModelConsulta1'
+  ExplicitWidth = 723
+  ExplicitHeight = 471
+  TextHeight = 15
+end

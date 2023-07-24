@@ -19,6 +19,7 @@ object frmModelConsulta: TfrmModelConsulta
     Height = 89
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 711
     object labelTermo: TLabel
       Left = 32
       Top = 16
@@ -87,6 +88,7 @@ object frmModelConsulta: TfrmModelConsulta
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnDblClick = bancoGridDblClick
   end
   object bancoConsulta: TFDQuery
     Connection = frmDataModule.conectaBanco
