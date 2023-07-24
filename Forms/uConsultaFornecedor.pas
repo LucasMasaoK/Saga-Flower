@@ -25,6 +25,8 @@ type
     bancoConsultaEMAIL: TStringField;
     bancoConsultaCADASTRO: TDateField;
     procedure btnSelecionarClick(Sender: TObject);
+    procedure btnPesquisaClick(Sender: TObject);
+    procedure btnCadastrarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,7 +40,22 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastroFornecedor;
+uses uCadastroFornecedor, uModelCadastro;
+
+procedure TfrmConsultaFornecedor.btnCadastrarClick(Sender: TObject);
+begin
+  inherited;
+frmConsultaFornecedor.Visible:=False;
+frmCadastroFornecedor.Show;
+end;
+
+procedure TfrmConsultaFornecedor.btnPesquisaClick(Sender: TObject);
+begin
+sqlTabela:='FORNECEDOR';
+
+  inherited;
+
+end;
 
 procedure TfrmConsultaFornecedor.btnSelecionarClick(Sender: TObject);
 begin

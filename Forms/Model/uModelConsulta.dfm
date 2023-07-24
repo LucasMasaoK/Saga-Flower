@@ -57,7 +57,7 @@ object frmModelConsulta: TfrmModelConsulta
       TextHint = 'Digite sua pesquisa...'
     end
     object btnPesquisa: TBitBtn
-      Left = 464
+      Left = 439
       Top = 25
       Width = 75
       Height = 41
@@ -66,13 +66,23 @@ object frmModelConsulta: TfrmModelConsulta
       OnClick = btnPesquisaClick
     end
     object btnSelecionar: TBitBtn
-      Left = 576
+      Left = 520
       Top = 25
       Width = 75
       Height = 41
       Caption = 'Selecionar'
       ModalResult = 1
       TabOrder = 3
+    end
+    object btnCadastrar: TBitBtn
+      Left = 601
+      Top = 25
+      Width = 75
+      Height = 41
+      Caption = 'Cadastrar'
+      ModalResult = 1
+      TabOrder = 4
+      OnClick = btnCadastrarClick
     end
   end
   object bancoGrid: TDBGrid

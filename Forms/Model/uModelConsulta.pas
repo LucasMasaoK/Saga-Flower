@@ -23,14 +23,16 @@ type
     editPesquisa: TEdit;
     labelTermo: TLabel;
     Label1: TLabel;
+    btnCadastrar: TBitBtn;
     procedure btnPesquisaClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure bancoGridDblClick(Sender: TObject);
+    procedure btnCadastrarClick(Sender: TObject);
   private
     { Private declarations }
   public
     sqlTabela, sqlTermo: String;
-    sqlID: Integer;
+    sqlID,btnNovoClicado: Integer;
   end;
 
 var
@@ -45,6 +47,11 @@ uses uDataModule;
 procedure TfrmModelConsulta.bancoGridDblClick(Sender: TObject);
 begin
 btnSelecionar.Click;
+end;
+
+procedure TfrmModelConsulta.btnCadastrarClick(Sender: TObject);
+begin
+ frmModelConsulta.btnNovoClicado:=1;
 end;
 
 procedure TfrmModelConsulta.btnPesquisaClick(Sender: TObject);

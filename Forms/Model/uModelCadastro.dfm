@@ -10,6 +10,8 @@ object frmModelCadastro: TfrmModelCadastro
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnActivate = FormActivate
+  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
