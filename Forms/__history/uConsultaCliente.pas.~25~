@@ -1,0 +1,63 @@
+unit uConsultaCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uModelConsulta, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfrmConsultaCliente = class(TfrmModelConsulta)
+    bancoConsultaID_CLIENTE: TIntegerField;
+    bancoConsultaNOME: TStringField;
+    bancoConsultaENDERECO: TStringField;
+    bancoConsultaNUMERO: TIntegerField;
+    bancoConsultaBAIRRO: TStringField;
+    bancoConsultaCIDADE: TStringField;
+    bancoConsultaUF: TStringField;
+    bancoConsultaCEP: TStringField;
+    bancoConsultaTELEFONE: TStringField;
+    bancoConsultaCPF: TStringField;
+    bancoConsultaEMAIL: TStringField;
+    bancoConsultaCADASTRO: TDateField;
+    procedure btnPesquisaClick(Sender: TObject);
+    procedure btnSelecionarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConsultaCliente: TfrmConsultaCliente;
+
+implementation
+
+{$R *.dfm}
+
+uses uCadastroCliente;
+
+procedure TfrmConsultaCliente.btnPesquisaClick(Sender: TObject);
+begin
+  sqlTabela := 'CLIENTE';
+  inherited;
+
+end;
+
+procedure TfrmConsultaCliente.btnSelecionarClick(Sender: TObject);
+begin
+  inherited;
+  if bancoConsulta.RecordCount > 0 then
+  begin
+    sqlID := bancoConsultaID_CLIENTE.AsInteger;
+    frmCadastroCliente.ShowModal;
+  end
+
+end;
+
+end.

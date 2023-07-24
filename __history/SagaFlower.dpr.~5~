@@ -1,0 +1,20 @@
+program SagaFlower;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'Forms\uPrincipal.pas' {frmPrincipal},
+  uDataModule in 'Forms\uDataModule.pas' {frmDataModule: TDataModule},
+  uModelCadastro in 'Forms\Model\uModelCadastro.pas' {frmModelCadastro},
+  uCadastroCliente in 'Forms\uCadastroCliente.pas' {frmModelCadastro1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmDataModule, frmDataModule);
+  Application.CreateForm(TfrmModelCadastro, frmModelCadastro);
+  Application.CreateForm(TfrmModelCadastro1, frmModelCadastro1);
+  Application.Run;
+end.

@@ -1,0 +1,40 @@
+unit uModelCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client, Data.DB,
+  FireDAC.Comp.DataSet;
+
+type
+  TfrmModelCadastro = class(TForm)
+    Panel1: TPanel;
+    btnNovo: TBitBtn;
+    btnDeletar: TBitBtn;
+    btnSalvar: TBitBtn;
+    btnCancelar: TBitBtn;
+    btnPesquisar: TBitBtn;
+    bancoQueryCadastro: TFDQuery;
+    FDTransaction1: TFDTransaction;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmModelCadastro: TfrmModelCadastro;
+
+implementation
+
+{$R *.dfm}
+
+
+
+
+
+end.

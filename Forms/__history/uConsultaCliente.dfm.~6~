@@ -1,0 +1,13 @@
+inherited frmConsultaCliente: TfrmConsultaCliente
+  Caption = 'Consulta de Clientes'
+  ExplicitLeft = 2
+  ExplicitTop = 2
+  TextHeight = 15
+  inherited Panel1: TPanel
+    ExplicitWidth = 711
+  end
+  inherited bancoConsulta: TFDQuery
+    SQL.Strings = (
+      'SELECT * FROM CLIENTE;')
+  end
+end
