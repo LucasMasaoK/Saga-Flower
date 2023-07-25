@@ -1,16 +1,19 @@
 inherited frmConsultaProduto: TfrmConsultaProduto
   Caption = 'Consulta de Produto'
+  ClientHeight = 442
   ClientWidth = 717
   Position = poMainFormCenter
   TextHeight = 15
   inherited Panel1: TPanel
     Width = 717
+    ExplicitWidth = 715
     inherited btnSelecionar: TBitBtn
       OnClick = btnSelecionarClick
     end
   end
   inherited bancoGrid: TDBGrid
     Width = 717
+    Height = 353
   end
   inherited bancoConsulta: TFDQuery
     Active = True

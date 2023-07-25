@@ -25,7 +25,6 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
@@ -44,7 +43,7 @@ uses uModelConsulta;
 
 procedure TfrmModelCadastro.btnCancelarClick(Sender: TObject);
 begin
-bancoQueryCadastro.Cancel;
+  bancoQueryCadastro.Cancel;
 end;
 
 procedure TfrmModelCadastro.btnDeletarClick(Sender: TObject);
@@ -70,33 +69,24 @@ end;
 
 procedure TfrmModelCadastro.btnSalvarClick(Sender: TObject);
 begin
-if MessageDlg('Deseja salvar as alterações?',TMsgDlgType.mtInformation,[mbOk,mbNo],0) = mrOk then
-begin
-try
- bancoQueryCadastro.Post;
-finally
- ShowMessage('Registro salvo com sucesso!');
-end;
+  if MessageDlg('Deseja salvar as alterações?', TMsgDlgType.mtInformation,
+    [mbOk, mbNo], 0) = mrOk then
+  begin
+    try
+      bancoQueryCadastro.Post;
+    finally
+      ShowMessage('Registro salvo com sucesso!');
+    end;
 
-end;
+  end;
 end;
 
 procedure TfrmModelCadastro.FormActivate(Sender: TObject);
 begin
-if frmModelConsulta.btnNovoClicado>0 then
-begin
-btnNovo.Click;
-end;
-end;
-
-procedure TfrmModelCadastro.FormShow(Sender: TObject);
-begin
-if frmModelConsulta.btnNovoClicado>0 then
-begin
-btnNovo.Click;
-end;
-
-
+  if frmModelConsulta.btnNovoClicado > 0 then
+  begin
+    btnNovo.Click;
+  end;
 end;
 
 end.

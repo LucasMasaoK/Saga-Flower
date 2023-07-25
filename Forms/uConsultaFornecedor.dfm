@@ -2,10 +2,11 @@ inherited frmConsultaFornecedor: TfrmConsultaFornecedor
   Caption = 'Consulta de Fornecedor'
   ClientWidth = 711
   Position = poMainFormCenter
-  ExplicitWidth = 723
+  ExplicitWidth = 727
   TextHeight = 15
   inherited Panel1: TPanel
     Width = 711
+    ExplicitWidth = 709
     inherited btnSelecionar: TBitBtn
       OnClick = btnSelecionarClick
     end

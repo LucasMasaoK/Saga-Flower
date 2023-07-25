@@ -25,9 +25,9 @@ type
     bancoQueryCadastroEMAIL: TStringField;
     bancoQueryCadastroCADASTRO: TDateField;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
+    dbEditID: TDBEdit;
     Label2: TLabel;
-    DBEdit2: TDBEdit;
+    dbEditNome: TDBEdit;
     Label3: TLabel;
     DBEdit3: TDBEdit;
     Label4: TLabel;
@@ -50,6 +50,8 @@ type
     DBEdit12: TDBEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,11 +67,24 @@ implementation
 
 uses uConsultaFornecedor, uModelConsulta;
 
+procedure TfrmCadastroFornecedor.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  dbEditID.Text:='';
+dbEditNome.SetFocus;
+end;
+
 procedure TfrmCadastroFornecedor.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
 frmConsultaFornecedor.Show;
 frmCadastroFornecedor.Visible:=False;
+end;
+
+procedure TfrmCadastroFornecedor.FormCreate(Sender: TObject);
+begin
+  inherited;
+bancoQueryCadastro.Open;
 end;
 
 procedure TfrmCadastroFornecedor.FormShow(Sender: TObject);
@@ -80,6 +95,9 @@ begin
 bancoQueryCadastro.Open;
 bancoQueryCadastro.Locate('ID_FORNECEDOR', frmModelConsulta.sqlID,[]);
 end;
+
+if  frmModelConsulta.btnNovoClicado> 0 then
+btnNovo.Click;
 
 end;
 

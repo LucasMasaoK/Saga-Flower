@@ -1,0 +1,79 @@
+inherited frmConsultaProduto: TfrmConsultaProduto
+  Caption = 'Consulta de Produto'
+  Position = poMainFormCenter
+  TextHeight = 15
+  inherited Panel1: TPanel
+    inherited btnSelecionar: TBitBtn
+      OnClick = btnSelecionarClick
+    end
+  end
+  inherited bancoConsulta: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM PRODUTO;')
+    object bancoConsultaID_PRODUTO: TIntegerField
+      DisplayLabel = 'C'#211'DIGO'
+      DisplayWidth = 7
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object bancoConsultaPRODUTO_DESCRICAO: TStringField
+      DisplayWidth = 31
+      FieldName = 'PRODUTO_DESCRICAO'
+      Origin = 'PRODUTO_DESCRICAO'
+      Size = 100
+    end
+    object bancoConsultaID_FORNECEDOR: TIntegerField
+      DisplayWidth = 15
+      FieldName = 'ID_FORNECEDOR'
+      Origin = 'ID_FORNECEDOR'
+      Required = True
+    end
+    object bancoConsultaVL_CUSTO: TFMTBCDField
+      DisplayWidth = 11
+      FieldName = 'VL_CUSTO'
+      Origin = 'VL_CUSTO'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object bancoConsultaVL_VENDA: TFMTBCDField
+      DisplayWidth = 12
+      FieldName = 'VL_VENDA'
+      Origin = 'VL_VENDA'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object bancoConsultaESTOQUE: TFMTBCDField
+      DisplayWidth = 10
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object bancoConsultaESTOQUE_MIN: TFMTBCDField
+      DisplayWidth = 14
+      FieldName = 'ESTOQUE_MIN'
+      Origin = 'ESTOQUE_MIN'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object bancoConsultaUNIDADE: TStringField
+      DisplayWidth = 8
+      FieldName = 'UNIDADE'
+      Origin = 'UNIDADE'
+      Size = 6
+    end
+    object bancoConsultaCADASTRO: TDateField
+      DisplayWidth = 10
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

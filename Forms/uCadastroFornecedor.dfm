@@ -3,9 +3,10 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
   ClientHeight = 460
   ClientWidth = 820
   Position = poMainFormCenter
+  OnCreate = FormCreate
   OnShow = FormShow
-  ExplicitWidth = 832
-  ExplicitHeight = 498
+  ExplicitWidth = 836
+  ExplicitHeight = 496
   TextHeight = 15
   object Label1: TLabel [0]
     Left = 80
@@ -13,7 +14,7 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     Width = 45
     Height = 15
     Caption = 'C'#211'DIGO'
-    FocusControl = DBEdit1
+    FocusControl = dbEditID
   end
   object Label2: TLabel [1]
     Left = 80
@@ -21,7 +22,7 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     Width = 35
     Height = 15
     Caption = 'NOME'
-    FocusControl = DBEdit2
+    FocusControl = dbEditNome
   end
   object Label3: TLabel [2]
     Left = 80
@@ -106,22 +107,22 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
   inherited Panel1: TPanel
     Top = 385
     Width = 820
-    ExplicitTop = 376
-    ExplicitWidth = 814
+    ExplicitTop = 374
+    ExplicitWidth = 818
     inherited btnPesquisar: TBitBtn
       OnClick = btnPesquisarClick
     end
   end
-  object DBEdit1: TDBEdit [13]
+  object dbEditID: TDBEdit [13]
     Left = 80
-    Top = 32
+    Top = 35
     Width = 40
     Height = 23
     DataField = 'ID_FORNECEDOR'
     DataSource = dataSourceCadastro
     TabOrder = 1
   end
-  object DBEdit2: TDBEdit [14]
+  object dbEditNome: TDBEdit [14]
     Left = 80
     Top = 80
     Width = 300
@@ -191,7 +192,6 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     Height = 23
     DataField = 'TELEFONE'
     DataSource = dataSourceCadastro
-    MaxLength = 16
     TabOrder = 9
   end
   object DBEdit10: TDBEdit [22]
@@ -201,7 +201,6 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     Height = 23
     DataField = 'CNPJ'
     DataSource = dataSourceCadastro
-    MaxLength = 17
     TabOrder = 10
   end
   object DBEdit11: TDBEdit [23]
@@ -223,7 +222,10 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     TabOrder = 12
   end
   inherited bancoQueryCadastro: TFDQuery
-    Active = True
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_FORNECEDOR_ID'
+    UpdateOptions.AutoIncFields = 'ID_FORNECEDOR'
     SQL.Strings = (
       'SELECT * FROM FORNECEDOR;')
     Left = 528
@@ -231,7 +233,7 @@ inherited frmCadastroFornecedor: TfrmCadastroFornecedor
     object bancoQueryCadastroID_FORNECEDOR: TIntegerField
       FieldName = 'ID_FORNECEDOR'
       Origin = 'ID_FORNECEDOR'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      ProviderFlags = [pfInWhere, pfInKey]
       Required = True
     end
     object bancoQueryCadastroNOME: TStringField

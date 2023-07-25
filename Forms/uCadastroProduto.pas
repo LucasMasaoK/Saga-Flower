@@ -22,25 +22,27 @@ type
     bancoQueryCadastroUNIDADE: TStringField;
     bancoQueryCadastroCADASTRO: TDateField;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
+    dbEditID: TDBEdit;
     Label2: TLabel;
     editNome: TDBEdit;
     Label3: TLabel;
-    DBEdit3: TDBEdit;
+    dbEditFornecedor: TDBEdit;
     Label4: TLabel;
-    DBEdit4: TDBEdit;
+    dbeditCusto: TDBEdit;
     Label5: TLabel;
-    DBEdit5: TDBEdit;
+    dbEditVenda: TDBEdit;
     Label6: TLabel;
-    DBEdit6: TDBEdit;
+    dbeditEstoque: TDBEdit;
     Label7: TLabel;
-    DBEdit7: TDBEdit;
+    dbEditEstoqueMinimo: TDBEdit;
     Label8: TLabel;
-    DBEdit8: TDBEdit;
+    dbEditUnidade: TDBEdit;
     Label9: TLabel;
-    DBEdit9: TDBEdit;
+    dbEditData: TDBEdit;
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,6 +57,15 @@ implementation
 {$R *.dfm}
 
 uses UConsultaProduto, uModelConsulta;
+
+procedure TfrmCadastroProduto.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+dbEditUnidade.Text:='UN';
+dbEditID.Text:='';
+dbEditData.Text:='25/07/2023';
+editNome.SetFocus;
+end;
 
 procedure TfrmCadastroProduto.btnPesquisarClick(Sender: TObject);
 begin
@@ -72,10 +83,11 @@ bancoQueryCadastro.Open;
 bancoQueryCadastro.Locate('ID_PRODUTO',frmModelConsulta.sqlID,[]);
 end;
 
-if  frmModelConsulta.btnNovoClicado >0 then
+end;
+procedure TfrmCadastroProduto.FormCreate(Sender: TObject);
 begin
-btnNovo.Click;
-editNome.SetFocus;
+  inherited;
+bancoQueryCadastro.Open;
 end;
-end;
+
 end.

@@ -27,6 +27,7 @@ type
     bancoConsultaCADASTRO: TDateField;
     procedure btnPesquisaClick(Sender: TObject);
     procedure btnSelecionarClick(Sender: TObject);
+    procedure btnCadastrarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +42,13 @@ implementation
 {$R *.dfm}
 
 uses uCadastroCliente;
+
+procedure TfrmConsultaCliente.btnCadastrarClick(Sender: TObject);
+begin
+  inherited;
+  frmConsultaCliente.Visible:=False;
+frmCadastroCliente.Show;
+end;
 
 procedure TfrmConsultaCliente.btnPesquisaClick(Sender: TObject);
 begin
