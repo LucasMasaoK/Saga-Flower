@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Saga Flower Sistema de Gest'#227'o Empresarial'
-  ClientHeight = 437
+  ClientHeight = 432
   ClientWidth = 628
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -39,6 +39,10 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Produtos'
         OnClick = Produtos1Click
       end
+    end
+    object Compra1: TMenuItem
+      Caption = 'Compra'
+      OnClick = Compra1Click
     end
   end
 end

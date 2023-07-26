@@ -19,7 +19,7 @@ object frmModelConsulta: TfrmModelConsulta
     Height = 89
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 711
+    ExplicitWidth = 715
     object labelTermo: TLabel
       Left = 32
       Top = 16

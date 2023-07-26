@@ -13,7 +13,9 @@ uses
   uCadastroProduto in 'Forms\uCadastroProduto.pas' {frmCadastroProduto},
   UConsultaProduto in 'Forms\UConsultaProduto.pas' {frmConsultaProduto},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  uModelVenda in 'Forms\Model\uModelVenda.pas' {frmModelVenda},
+  uCompraProduto in 'Forms\uCompraProduto.pas' {frmCompraProduto};
 
 {$R *.res}
 
@@ -31,5 +33,7 @@ begin
   Application.CreateForm(TfrmCadastroFornecedor, frmCadastroFornecedor);
   Application.CreateForm(TfrmCadastroProduto, frmCadastroProduto);
   Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
+  Application.CreateForm(TfrmModelVenda, frmModelVenda);
+  Application.CreateForm(TfrmCompraProduto, frmCompraProduto);
   Application.Run;
 end.
