@@ -35,7 +35,8 @@ implementation
 {$R *.dfm}
 
 uses uCadastroCliente, uConsultaCliente, uConsultaFornecedor,
-  uCadastroFornecedor, uCadastroProduto, UConsultaProduto, uCompraProduto;
+  uCadastroFornecedor, uCadastroProduto, UConsultaProduto,
+  uCompra;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
@@ -46,7 +47,7 @@ end;
 
 procedure TfrmPrincipal.Compra1Click(Sender: TObject);
 begin
-frmCompraProduto.ShowModal;
+frmCompra.ShowModal;
 end;
 
 procedure TfrmPrincipal.Fornecedor1Click(Sender: TObject);

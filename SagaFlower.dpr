@@ -15,7 +15,7 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   uModelVenda in 'Forms\Model\uModelVenda.pas' {frmModelVenda},
-  uCompraProduto in 'Forms\uCompraProduto.pas' {frmCompraProduto};
+  uCompra in 'Forms\uCompra.pas' {frmCompra};
 
 {$R *.res}
 
@@ -34,6 +34,6 @@ begin
   Application.CreateForm(TfrmCadastroProduto, frmCadastroProduto);
   Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
   Application.CreateForm(TfrmModelVenda, frmModelVenda);
-  Application.CreateForm(TfrmCompraProduto, frmCompraProduto);
+  Application.CreateForm(TfrmCompra, frmCompra);
   Application.Run;
 end.

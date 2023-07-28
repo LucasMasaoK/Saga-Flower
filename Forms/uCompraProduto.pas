@@ -55,14 +55,21 @@ type
     bancoQueryCadastroDescricaoPagamento: TStringField;
     dbDescricaoPagamento: TDBLookupComboBox;
     Label8: TLabel;
-    bancoQueryProdutoID_SEQUENCIA: TIntegerField;
-    bancoQueryProdutoID_COMPRA: TIntegerField;
-    bancoQueryProdutoID_PRODUTO: TIntegerField;
-    bancoQueryProdutoQTDE: TFMTBCDField;
-    bancoQueryProdutoVL_CUSTO: TFMTBCDField;
-    bancoQueryProdutoDESCONTO: TFMTBCDField;
-    bancoQueryProdutoTOTAL_ITEM: TFMTBCDField;
     bancoQueryProdutos: TFDQuery;
+    Label9: TLabel;
+    DBEdit4: TDBEdit;
+    Label10: TLabel;
+    dbEditQtdProduto: TDBEdit;
+    Label11: TLabel;
+    dbEditValorCusto: TDBEdit;
+    Label12: TLabel;
+    dbEditDesconto: TDBEdit;
+    Label13: TLabel;
+    DBEdit10: TDBEdit;
+    bancoQueryItensNomeProduto: TStringField;
+    Label14: TLabel;
+    DBEdit11: TDBEdit;
+    queryItens: TFDQuery;
     bancoQueryProdutosID_PRODUTO: TIntegerField;
     bancoQueryProdutosPRODUTO_DESCRICAO: TStringField;
     bancoQueryProdutosID_FORNECEDOR: TIntegerField;
@@ -72,24 +79,25 @@ type
     bancoQueryProdutosESTOQUE_MIN: TFMTBCDField;
     bancoQueryProdutosUNIDADE: TStringField;
     bancoQueryProdutosCADASTRO: TDateField;
-    Label9: TLabel;
-    DBEdit4: TDBEdit;
-    Label10: TLabel;
+    queryItensID_SEQUENCIA: TIntegerField;
+    queryItensID_COMPRA: TIntegerField;
+    queryItensID_PRODUTO: TIntegerField;
+    queryItensQTDE: TFMTBCDField;
+    queryItensVL_CUSTO: TFMTBCDField;
+    queryItensDESCONTO: TFMTBCDField;
+    queryItensTOTAL_ITEM: TFMTBCDField;
+    queryItensNOMEPRODUTO: TStringField;
+    queryItensVLCUSTOPRODUTO: TFloatField;
     DBEdit7: TDBEdit;
-    Label11: TLabel;
-    DBEdit8: TDBEdit;
-    Label12: TLabel;
-    DBEdit9: TDBEdit;
-    Label13: TLabel;
-    DBEdit10: TDBEdit;
-    bancoQueryItensNomeProduto: TStringField;
-    Label14: TLabel;
-    DBEdit11: TDBEdit;
     procedure btnNovoClick(Sender: TObject);
+    procedure DBEdit4Exit(Sender: TObject);
+    procedure dbEditQtdProdutoExit(Sender: TObject);
+    procedure dbEditDescontoExit(Sender: TObject);
+    procedure btnInserirProdutoClick(Sender: TObject);
   private
-    { Private declarations }
+    itemSequencia:integer;
   public
-    { Public declarations }
+
   end;
 
 var
@@ -101,11 +109,59 @@ implementation
 
 uses uDataModule;
 
+procedure TfrmCompraProduto.btnInserirProdutoClick(Sender: TObject);
+begin
+  inherited;
+if queryItensID_PRODUTO.AsInteger>0 then
+begin
+queryItens.Last;
+itemSequencia:=itemSequencia+1;
+ queryItensID_SEQUENCIA.AsInteger:=itemSequencia;
+ queryItensID_COMPRA.AsInteger:=bancoQueryCadastroID_COMPRA.AsInteger;
+ queryItens.Append;
+
+end;
+
+end;
+
 procedure TfrmCompraProduto.btnNovoClick(Sender: TObject);
 begin
   inherited;
+bancoQueryCadastro.Append;
+
+queryItens.SQL.Add('');
+queryItens.SQL.Add('SELECT * FROM ITEM_COMPRA WHERE ID_COMPRA :pIDCOMPRA');
+queryItens.ParamByName('pIDCOMPRA').AsString:=bancoQueryCadastroID_COMPRA.AsString;
+queryItens.open;
+
 bancoQueryCadastroCADASTRO.AsDateTime:=Date;
 dbEditSolicitante.SetFocus;
+end;
+
+
+
+procedure TfrmCompraProduto.DBEdit4Exit(Sender: TObject);
+begin
+  inherited;
+if bancoQueryProdutosID_PRODUTO.AsInteger>0 then
+begin
+queryItensQTDE.AsFloat:=1;
+queryItensDESCONTO.AsFloat:=0;
+queryItensVL_CUSTO.AsFloat:=  queryItensVLCUSTOPRODUTO.AsFloat;
+
+end;
+end;
+
+procedure TfrmCompraProduto.dbEditDescontoExit(Sender: TObject);
+begin
+  inherited;
+queryItensTOTAL_ITEM.AsFloat:=(queryItensVL_CUSTO.AsFloat * queryItensQTDE.AsFloat) - queryItensDESCONTO.AsFloat;
+end;
+
+procedure TfrmCompraProduto.dbEditQtdProdutoExit(Sender: TObject);
+begin
+  inherited;
+queryItensTOTAL_ITEM.AsFloat:=(queryItensVL_CUSTO.AsFloat * queryItensQTDE.AsFloat);
 end;
 
 end.

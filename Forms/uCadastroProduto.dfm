@@ -1,7 +1,9 @@
 inherited frmCadastroProduto: TfrmCadastroProduto
   Caption = 'Cadastro de Produto'
+  ClientWidth = 703
   Position = poMainFormCenter
   OnCreate = FormCreate
+  ExplicitWidth = 719
   TextHeight = 15
   object Label1: TLabel [0]
     Left = 40
@@ -76,6 +78,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
     FocusControl = dbEditData
   end
   inherited Panel1: TPanel
+    Width = 703
+    ExplicitWidth = 701
     inherited btnPesquisar: TBitBtn
       OnClick = btnPesquisarClick
     end

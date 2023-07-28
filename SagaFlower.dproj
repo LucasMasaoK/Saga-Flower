@@ -146,8 +146,8 @@
             <Form>frmModelVenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Forms\uCompraProduto.pas">
-            <Form>frmCompraProduto</Form>
+        <DCCReference Include="Forms\uCompra.pas">
+            <Form>frmCompra</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

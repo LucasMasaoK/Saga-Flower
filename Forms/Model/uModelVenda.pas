@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids;
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls;
 
 type
   TfrmModelVenda = class(TForm)
@@ -18,14 +18,44 @@ type
     btnSalvar: TBitBtn;
     btnCancelar: TBitBtn;
     btnPesquisar: TBitBtn;
-    bancoQueryCadastro: TFDQuery;
-    dataSourceCadastro: TDataSource;
     btnImprimir: TBitBtn;
     Panel2: TPanel;
     bancoQueryItens: TFDQuery;
     dataSourceItens: TDataSource;
     DBGrid1: TDBGrid;
     Panel3: TPanel;
+    btnInserirProduto: TBitBtn;
+    btnCancelarProduto: TBitBtn;
+    bancoQueryItensID_SEQUENCIA: TIntegerField;
+    bancoQueryItensID_COMPRA: TIntegerField;
+    bancoQueryItensID_PRODUTO: TIntegerField;
+    bancoQueryItensQTDE: TFMTBCDField;
+    bancoQueryItensVL_CUSTO: TFMTBCDField;
+    bancoQueryItensDESCONTO: TFMTBCDField;
+    bancoQueryItensTOTAL_ITEM: TFMTBCDField;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    bancoQueryProdutos: TFDQuery;
+    bancoQueryProdutosID_PRODUTO: TIntegerField;
+    bancoQueryProdutosPRODUTO_DESCRICAO: TStringField;
+    bancoQueryProdutosVL_CUSTO: TFMTBCDField;
+    bancoQueryItensNOMEPRODUTO: TStringField;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    bancoQueryItensPRODUTOCUSTO: TFloatField;
+    DBEdit2: TDBEdit;
+    procedure DBEdit3Exit(Sender: TObject);
+    procedure DBEdit4Exit(Sender: TObject);
+    procedure DBEdit6Exit(Sender: TObject);
+    procedure btnInserirProdutoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,5 +70,34 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmModelVenda.btnInserirProdutoClick(Sender: TObject);
+begin
+{bancoQueryItens.Append;  }
+end;
+
+procedure TfrmModelVenda.DBEdit3Exit(Sender: TObject);
+begin
+try
+if bancoQueryProdutos.RecordCount>0 then
+bancoQueryItensQTDE.AsFloat:=1;
+bancoQueryItensVL_CUSTO.AsFloat:=bancoQueryItensPRODUTOCUSTO.AsFloat;
+bancoQueryItensDESCONTO.AsFloat:=0;
+
+except
+ShowMessage('Registro não encontrado');
+
+end;
+end;
+
+procedure TfrmModelVenda.DBEdit4Exit(Sender: TObject);
+begin
+bancoQueryItensTOTAL_ITEM.AsFloat:=(bancoQueryItensQTDE.AsFloat * bancoQueryItensVL_CUSTO.AsFloat)- bancoQueryItensDESCONTO.AsFloat;
+end;
+
+procedure TfrmModelVenda.DBEdit6Exit(Sender: TObject);
+begin
+bancoQueryItensTOTAL_ITEM.AsFloat:=(bancoQueryItensQTDE.AsFloat * bancoQueryItensVL_CUSTO.AsFloat)- bancoQueryItensDESCONTO.AsFloat;
+end;
 
 end.
