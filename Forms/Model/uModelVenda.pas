@@ -51,7 +51,7 @@ type
     Label1: TLabel;
     DBEdit1: TDBEdit;
     bancoQueryItensPRODUTOCUSTO: TFloatField;
-    DBEdit2: TDBEdit;
+    editTotal: TDBEdit;
     procedure DBEdit3Exit(Sender: TObject);
     procedure DBEdit4Exit(Sender: TObject);
     procedure DBEdit6Exit(Sender: TObject);

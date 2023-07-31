@@ -223,7 +223,7 @@ object frmModelVenda: TfrmModelVenda
       DataSource = dataSourceItens
       TabOrder = 7
     end
-    object DBEdit2: TDBEdit
+    object editTotal: TDBEdit
       Left = 612
       Top = 48
       Width = 100

@@ -18,8 +18,8 @@ object frmModelVenda: TfrmModelVenda
     Height = 75
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 459
-    ExplicitWidth = 776
+    ExplicitTop = 468
+    ExplicitWidth = 927
     object btnNovo: TBitBtn
       Left = 16
       Top = 16
@@ -76,7 +76,7 @@ object frmModelVenda: TfrmModelVenda
     Height = 105
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 776
+    ExplicitWidth = 927
   end
   object DBGrid1: TDBGrid
     Left = 0
@@ -99,6 +99,8 @@ object frmModelVenda: TfrmModelVenda
     Height = 87
     Align = alBottom
     TabOrder = 3
+    ExplicitTop = 381
+    ExplicitWidth = 927
     object Label3: TLabel
       Left = 32
       Top = 32
@@ -118,9 +120,9 @@ object frmModelVenda: TfrmModelVenda
     object Label5: TLabel
       Left = 400
       Top = 32
-      Width = 54
+      Width = 75
       Height = 15
-      Caption = 'VL_CUSTO'
+      Caption = 'VALOR CUSTO'
       FocusControl = DBEdit5
     end
     object Label6: TLabel
@@ -134,9 +136,9 @@ object frmModelVenda: TfrmModelVenda
     object Label7: TLabel
       Left = 612
       Top = 32
-      Width = 63
+      Width = 71
       Height = 15
-      Caption = 'TOTAL_ITEM'
+      Caption = 'VALOR TOTAL'
       FocusControl = DBEdit7
     end
     object Label1: TLabel
@@ -154,6 +156,7 @@ object frmModelVenda: TfrmModelVenda
       Height = 25
       Caption = 'Inserir'
       TabOrder = 0
+      OnClick = btnInserirProdutoClick
     end
     object btnCancelarProduto: TBitBtn
       Left = 810
@@ -181,6 +184,7 @@ object frmModelVenda: TfrmModelVenda
       DataField = 'QTDE'
       DataSource = dataSourceItens
       TabOrder = 3
+      OnExit = DBEdit4Exit
     end
     object DBEdit5: TDBEdit
       Left = 400
@@ -199,6 +203,7 @@ object frmModelVenda: TfrmModelVenda
       DataField = 'DESCONTO'
       DataSource = dataSourceItens
       TabOrder = 5
+      OnExit = DBEdit6Exit
     end
     object DBEdit7: TDBEdit
       Left = 612
@@ -218,7 +223,7 @@ object frmModelVenda: TfrmModelVenda
       DataSource = dataSourceItens
       TabOrder = 7
     end
-    object DBEdit2: TDBEdit
+    object editTotal: TDBEdit
       Left = 612
       Top = 48
       Width = 100
@@ -229,8 +234,6 @@ object frmModelVenda: TfrmModelVenda
     end
   end
   object bancoQueryItens: TFDQuery
-    Active = True
-    Connection = frmDataModule.conectaBanco
     SQL.Strings = (
       'SELECT * FROM ITEM_COMPRA;')
     Left = 776
@@ -318,7 +321,6 @@ object frmModelVenda: TfrmModelVenda
     Top = 328
   end
   object bancoQueryProdutos: TFDQuery
-    Active = True
     Connection = frmDataModule.conectaBanco
     SQL.Strings = (
       'SELECT * FROM PRODUTO;')

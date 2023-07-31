@@ -55,6 +55,7 @@ type
     procedure DBEdit3Exit(Sender: TObject);
     procedure DBEdit4Exit(Sender: TObject);
     procedure DBEdit6Exit(Sender: TObject);
+    procedure btnInserirProdutoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,6 +71,11 @@ implementation
 
 uses uDataModule;
 
+procedure TfrmModelVenda.btnInserirProdutoClick(Sender: TObject);
+begin
+{bancoQueryItens.Append;  }
+end;
+
 procedure TfrmModelVenda.DBEdit3Exit(Sender: TObject);
 begin
 try
@@ -80,7 +86,7 @@ bancoQueryItensDESCONTO.AsFloat:=0;
 
 except
 ShowMessage('Registro não encontrado');
-abort;
+
 end;
 end;
 

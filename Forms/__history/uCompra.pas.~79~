@@ -37,19 +37,23 @@ type
     bancoQueryFornecedor: TFDQuery;
     bancoQueryCompraNOMEFORNECEDOR: TStringField;
     Label13: TLabel;
-    DBEdit14: TDBEdit;
     bancoQueryCompraFORMAPAGAMENTO: TStringField;
     Label14: TLabel;
-    DBEdit15: TDBEdit;
     dataSourcePagamento: TDataSource;
     bancoQueryPagamentoID_FORMA_PGTO: TIntegerField;
     bancoQueryPagamentoDESCRICAO: TStringField;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    bancoQueryItensSUBTOTAL: TAggregateField;
+    bancoQueryProdutosESTOQUE: TFMTBCDField;
     procedure FormActivate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnInserirProdutoClick(Sender: TObject);
+    procedure DBEdit3Enter(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
-    { Private declarations }
+    postCompra: integer;
   public
     { Public declarations }
   end;
@@ -65,21 +69,58 @@ uses uDataModule;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);
 begin
-  try
-    bancoQueryCompra.Post;
-  except
-    ShowMessage('PREENCHA OS DADOS DA VENDA');
-    ABORT;
-  end;
-  bancoQueryItensID_COMPRA.AsInteger := bancoQueryCompraID_COMPRA.AsInteger;
-    bancoQueryItens.Post;
+  if bancoQueryProdutos.Locate('ID_PRODUTO',
+    bancoQueryItens.FieldByName('ID_PRODUTO').AsInteger, []) then
+  begin
 
+    bancoQueryItensID_COMPRA.AsInteger := bancoQueryCompraID_COMPRA.AsInteger;
+    bancoQueryItens.Post;
+    bancoQueryCompra.Edit;
+    bancoQueryCompraVALOR.AsFloat := bancoQueryItensSUBTOTAL.Value;
+    bancoQueryCompra.Post;
+    bancoQueryItens.Append;
+  end
 end;
 
 procedure TfrmCompra.btnNovoClick(Sender: TObject);
 begin
   inherited;
   bancoQueryCompra.Append;
+end;
+
+procedure TfrmCompra.btnSalvarClick(Sender: TObject);
+begin
+  inherited;
+  bancoQueryItens.First;
+  while not bancoQueryItens.Eof do
+  begin
+    if bancoQueryProdutos.Locate('ID_PRODUTO', bancoQueryProdutosID_PRODUTO.AsInteger,[]) then
+    begin
+    bancoQueryProdutos.Edit;
+    bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger +
+      bancoQueryItensQTDE.AsInteger;
+    bancoQueryItens.Next;
+    end;
+    bancoQueryProdutos.Refresh;
+    ShowMessage('Venda feita com sucesso!');
+  end;
+end;
+
+procedure TfrmCompra.DBEdit3Enter(Sender: TObject);
+begin
+  inherited;
+  if postCompra = 0 then
+  begin
+    try
+      bancoQueryCompra.Post;
+      postCompra := 1;
+    except
+      begin
+        ShowMessage('PREENCHA OS DADOS DA COMPRA');
+        bancoQueryCompra.Cancel;
+      end;
+    end;
+  end;
 end;
 
 procedure TfrmCompra.FormActivate(Sender: TObject);
@@ -96,8 +137,8 @@ begin
   bancoQueryCompraUSUARIO.AsString := 'Lucas';
   bancoQueryCompraID_FORMA_PGTO.AsInteger := 1;
   bancoQueryCompraCADASTRO.AsDateTime := Date;
-  bancoQueryItens.ParamByName('pCompra').AsInteger:=bancoQueryCompraID_COMPRA.AsInteger;
-
+  bancoQueryItens.ParamByName('pCompra').AsInteger :=
+    bancoQueryCompraID_COMPRA.AsInteger;
 
   bancoQueryItens.Open;
   bancoQueryItens.Edit;
