@@ -1,12 +1,10 @@
 inherited frmCompra: TfrmCompra
   Caption = 'Tela de Compras'
-  ClientWidth = 929
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnShow = FormShow
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 929
     inherited btnNovo: TBitBtn
       OnClick = btnNovoClick
     end
@@ -18,7 +16,6 @@ inherited frmCompra: TfrmCompra
     end
   end
   inherited Panel2: TPanel
-    Width = 929
     Height = 209
     ExplicitHeight = 209
     object Label2: TLabel
@@ -162,14 +159,15 @@ inherited frmCompra: TfrmCompra
   end
   inherited DBGrid1: TDBGrid
     Top = 209
-    Width = 929
-    Height = 172
+    Height = 183
   end
   inherited Panel3: TPanel
-    Width = 929
     inherited Label3: TLabel
       Left = 25
       ExplicitLeft = 25
+    end
+    inherited btnCancelarProduto: TBitBtn
+      OnClick = btnCancelarProdutoClick
     end
     inherited DBEdit3: TDBEdit
       Left = 22
@@ -220,6 +218,8 @@ inherited frmCompra: TfrmCompra
   end
   inherited bancoQueryProdutos: TFDQuery
     Active = True
+    Left = 888
+    Top = 392
     object bancoQueryProdutosESTOQUE: TFMTBCDField
       FieldName = 'ESTOQUE'
       Origin = 'ESTOQUE'

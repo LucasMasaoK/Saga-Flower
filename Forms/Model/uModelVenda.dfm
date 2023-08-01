@@ -163,7 +163,7 @@ object frmModelVenda: TfrmModelVenda
       Top = 48
       Width = 75
       Height = 25
-      Caption = 'Cancelar'
+      Caption = 'Deletar'
       TabOrder = 1
     end
     object DBEdit3: TDBEdit

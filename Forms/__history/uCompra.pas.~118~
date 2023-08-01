@@ -53,6 +53,7 @@ type
     procedure DBEdit3Enter(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
+    procedure btnCancelarProdutoClick(Sender: TObject);
   private
     postCompra: integer;
   public
@@ -67,6 +68,18 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmCompra.btnCancelarProdutoClick(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('Deseja deletar esse produto?',TMsgDlgType.mtInformation,[mbOk,mbNo],0) = mrOk then
+  begin
+  ShowMessage('teste'+bancoQueryItensID_PRODUTO.AsString);
+  bancoQueryProdutos.Edit;
+  bancoQueryProdutosESTOQUE.AsFloat:=   bancoQueryProdutosESTOQUE.AsFloat - bancoQueryItensQTDE.AsFloat;
+  end;
+
+end;
 
 procedure TfrmCompra.btnDeletarClick(Sender: TObject);
 begin
@@ -103,17 +116,20 @@ begin
   for i := 1 to bancoQueryItens.RecordCount do
   begin
 
-    bancoQueryItens.Edit;
+     if bancoQueryProdutos.Locate('ID_PRODUTO',
+      bancoQueryItensID_PRODUTO.AsInteger, []) then
+    begin
+        bancoQueryItens.Edit;
     bancoQueryProdutos.Edit;
-
     bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger +
       bancoQueryItensQTDE.AsInteger;
     bancoQueryProdutos.Post;
-    ShowMessage('Venda feita com sucesso!' +
-      bancoQueryItensID_PRODUTO.AsString);
-    bancoQueryItens.Next;
 
+
+    bancoQueryItens.Next;
+     end;
   end;
+    ShowMessage('Venda feita com sucesso!');
 end;
 
 procedure TfrmCompra.DBEdit3Enter(Sender: TObject);
