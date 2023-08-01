@@ -52,6 +52,7 @@ type
     procedure btnInserirProdutoClick(Sender: TObject);
     procedure DBEdit3Enter(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
   private
     postCompra: integer;
   public
@@ -66,6 +67,12 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+begin
+  inherited;
+  bancoQueryItens.Next;
+end;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);
 begin
@@ -90,62 +97,56 @@ end;
 
 procedure TfrmCompra.btnSalvarClick(Sender: TObject);
 begin
-  inherited;
-  bancoQueryItens.First;
-       while not bancoQueryItens.Eof do
+  var
+    i: integer;
+  for i := 1 to bancoQueryItens.RecordCount do
   begin
-    if bancoQueryProdutos.Locate('ID_PRODUTO',
-      bancoQueryProdutosID_PRODUTO.AsInteger, []) then
-    begin
-      bancoQueryProdutos.Edit;
-      bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger
-        + bancoQueryItensQTDE.AsInteger;
-      bancoQueryItens.Next;
-       ShowMessage('Venda feita com sucesso!');
-    end;
-    bancoQueryProdutos.Refresh;
 
+      bancoQueryItens.Edit;
+  bancoQueryProdutos.Edit;
+ 
+      bancoQueryItens.Next;
+
+    end;
   end;
 
-end;
-
-procedure TfrmCompra.DBEdit3Enter(Sender: TObject);
-begin
-  inherited;
-  if postCompra = 0 then
+  procedure TfrmCompra.DBEdit3Enter(Sender: TObject);
   begin
-    try
-      bancoQueryCompra.Post;
-      postCompra := 1;
-    except
-      begin
-        ShowMessage('PREENCHA OS DADOS DA COMPRA');
-        bancoQueryCompra.Cancel;
+    inherited;
+    if postCompra = 0 then
+    begin
+      try
+        bancoQueryCompra.Post;
+        postCompra := 1;
+      except
+        begin
+          ShowMessage('PREENCHA OS DADOS DA COMPRA');
+          bancoQueryCompra.Cancel;
+        end;
       end;
     end;
   end;
-end;
 
-procedure TfrmCompra.FormActivate(Sender: TObject);
-begin
-  inherited;
-  bancoQueryCompra.Active := True;
-end;
+  procedure TfrmCompra.FormActivate(Sender: TObject);
+  begin
+    inherited;
+    bancoQueryCompra.Active := True;
+  end;
 
-procedure TfrmCompra.FormShow(Sender: TObject);
-begin
-  inherited;
-  bancoQueryCompra.Open;
-  bancoQueryCompra.Append;
-  bancoQueryCompraUSUARIO.AsString := 'Lucas';
-  bancoQueryCompraID_FORMA_PGTO.AsInteger := 1;
-  bancoQueryCompraCADASTRO.AsDateTime := Date;
-  bancoQueryItens.ParamByName('pCompra').AsInteger :=
-    bancoQueryCompraID_COMPRA.AsInteger;
+  procedure TfrmCompra.FormShow(Sender: TObject);
+  begin
+    inherited;
+    bancoQueryCompra.Open;
+    bancoQueryCompra.Append;
+    bancoQueryCompraUSUARIO.AsString := 'Lucas';
+    bancoQueryCompraID_FORMA_PGTO.AsInteger := 1;
+    bancoQueryCompraCADASTRO.AsDateTime := Date;
+    bancoQueryItens.ParamByName('pCompra').AsInteger :=
+      bancoQueryCompraID_COMPRA.AsInteger;
 
-  bancoQueryItens.Open;
-  bancoQueryItens.Edit;
+    bancoQueryItens.Open;
+    bancoQueryItens.Edit;
 
-end;
+  end;
 
 end.

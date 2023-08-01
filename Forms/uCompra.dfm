@@ -1,25 +1,25 @@
 inherited frmCompra: TfrmCompra
   Caption = 'Tela de Compras'
-  ClientWidth = 927
+  ClientWidth = 929
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnShow = FormShow
-  ExplicitWidth = 943
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 927
-    ExplicitWidth = 925
+    Width = 929
     inherited btnNovo: TBitBtn
       OnClick = btnNovoClick
+    end
+    inherited btnDeletar: TBitBtn
+      OnClick = btnDeletarClick
     end
     inherited btnSalvar: TBitBtn
       OnClick = btnSalvarClick
     end
   end
   inherited Panel2: TPanel
-    Width = 927
+    Width = 929
     Height = 209
-    ExplicitTop = -6
     ExplicitHeight = 209
     object Label2: TLabel
       Left = 32
@@ -162,12 +162,11 @@ inherited frmCompra: TfrmCompra
   end
   inherited DBGrid1: TDBGrid
     Top = 209
-    Width = 927
-    Height = 183
+    Width = 929
+    Height = 172
   end
   inherited Panel3: TPanel
-    Width = 927
-    ExplicitWidth = 925
+    Width = 929
     inherited Label3: TLabel
       Left = 25
       ExplicitLeft = 25

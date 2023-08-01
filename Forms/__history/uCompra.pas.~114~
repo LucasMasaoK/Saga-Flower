@@ -52,6 +52,7 @@ type
     procedure btnInserirProdutoClick(Sender: TObject);
     procedure DBEdit3Enter(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
   private
     postCompra: integer;
   public
@@ -66,6 +67,12 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+begin
+  inherited;
+  bancoQueryItens.Next;
+end;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);
 begin
@@ -90,19 +97,25 @@ end;
 
 procedure TfrmCompra.btnSalvarClick(Sender: TObject);
 begin
-  inherited;
-  bancoQueryItens.First;
-  while not bancoQueryItens.Eof do
+ bancoQueryItens.First;
+  var
+    i: integer;
+  for i := 1 to bancoQueryItens.RecordCount do
   begin
-    if bancoQueryProdutos.Locate('ID_PRODUTO', bancoQueryProdutosID_PRODUTO.AsInteger,[]) then
+;
+     if bancoQueryProdutos.Locate('ID_PRODUTO',
+      bancoQueryItensID_PRODUTO.AsInteger, []) then
     begin
-    bancoQueryProdutos.Edit;
+        bancoQueryItens.Edit;
+    bancoQueryProdutos.Edit
     bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger +
       bancoQueryItensQTDE.AsInteger;
+    bancoQueryProdutos.Post;
+
+    ShowMessage('Venda feita com sucesso!' +
+      bancoQueryItensID_PRODUTO.AsString);
     bancoQueryItens.Next;
-    end;
-    bancoQueryProdutos.Refresh;
-    ShowMessage('Venda feita com sucesso!');
+     end;
   end;
 end;
 
