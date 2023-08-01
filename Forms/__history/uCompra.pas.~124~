@@ -72,19 +72,34 @@ uses uDataModule;
 procedure TfrmCompra.btnCancelarProdutoClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('Deseja deletar esse produto?',TMsgDlgType.mtInformation,[mbOk,mbNo],0) = mrOk then
+  if MessageDlg('Deseja deletar o produto ' + bancoQueryItensID_PRODUTO.AsString
+    + '?', TMsgDlgType.mtInformation, [mbOk, mbNo], 0) = mrOk then
   begin
-  ShowMessage('teste'+bancoQueryItensID_PRODUTO.AsString);
-  bancoQueryProdutos.Edit;
-  bancoQueryProdutosESTOQUE.AsFloat:=   bancoQueryProdutosESTOQUE.AsFloat - bancoQueryItensQTDE.AsFloat;
+    bancoQueryProdutos.Edit;
+    bancoQueryProdutosESTOQUE.AsFloat := bancoQueryProdutosESTOQUE.AsFloat -
+      bancoQueryItensQTDE.AsFloat;
+    bancoQueryItens.Delete;
+
   end;
 
 end;
 
 procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  inherited;
-  bancoQueryItens.Next;
+if MessageDlg('Deseja estornar venda?',TMsgDlgType.mtInformation,[mbOk,mbNo],0) = mrOk then
+begin
+bancoQueryItens.First;
+for i := 1 to bancoQueryItens.RecordCount do
+begin
+bancoQueryProdutosESTOQUE.AsFloat:=bancoQueryProdutosESTOQUE.AsFloat - bancoQueryItensQTDE.AsFloat;
+bancoQueryProdutos.Post;
+bancoQueryItens.Delete;
+end;
+bancoQueryCompra.Delete;
+end;
+
 end;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);
@@ -110,26 +125,25 @@ end;
 
 procedure TfrmCompra.btnSalvarClick(Sender: TObject);
 begin
- bancoQueryItens.First;
+  bancoQueryItens.First;
   var
     i: integer;
   for i := 1 to bancoQueryItens.RecordCount do
   begin
 
-     if bancoQueryProdutos.Locate('ID_PRODUTO',
+    if bancoQueryProdutos.Locate('ID_PRODUTO',
       bancoQueryItensID_PRODUTO.AsInteger, []) then
     begin
-        bancoQueryItens.Edit;
-    bancoQueryProdutos.Edit;
-    bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger +
-      bancoQueryItensQTDE.AsInteger;
-    bancoQueryProdutos.Post;
+      bancoQueryItens.Edit;
+      bancoQueryProdutos.Edit;
+      bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger
+        + bancoQueryItensQTDE.AsInteger;
+      bancoQueryProdutos.Post;
 
-
-    bancoQueryItens.Next;
-     end;
+      bancoQueryItens.Next;
+    end;
   end;
-    ShowMessage('Venda feita com sucesso!');
+  ShowMessage('Venda feita com sucesso!');
 end;
 
 procedure TfrmCompra.DBEdit3Enter(Sender: TObject);

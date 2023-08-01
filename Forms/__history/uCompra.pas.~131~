@@ -46,6 +46,7 @@ type
     DBLookupComboBox2: TDBLookupComboBox;
     bancoQueryItensSUBTOTAL: TAggregateField;
     bancoQueryProdutosESTOQUE: TFMTBCDField;
+    DBNavigator1: TDBNavigator;
     procedure FormActivate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -53,6 +54,8 @@ type
     procedure DBEdit3Enter(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
+    procedure btnCancelarProdutoClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     postCompra: integer;
   public
@@ -68,10 +71,46 @@ implementation
 
 uses uDataModule;
 
-procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+procedure TfrmCompra.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-  bancoQueryItens.Next;
+bancoQueryCompra.Cancel;
+end;
+
+procedure TfrmCompra.btnCancelarProdutoClick(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('Deseja deletar o produto ' + bancoQueryItensID_PRODUTO.AsString
+    + '?', TMsgDlgType.mtInformation, [mbOk, mbNo], 0) = mrOk then
+  begin
+    bancoQueryProdutos.Edit;
+    bancoQueryProdutosESTOQUE.AsFloat := bancoQueryProdutosESTOQUE.AsFloat -
+      bancoQueryItensQTDE.AsFloat;
+    bancoQueryItens.Delete;
+
+  end;
+
+end;
+
+procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+var
+  i: Integer;
+begin
+if MessageDlg('Deseja estornar venda?',TMsgDlgType.mtInformation,[mbOk,mbNo],0) = mrOk then
+begin
+
+for i := 1 to bancoQueryItens.RecordCount do
+begin
+bancoQueryItens.First;
+bancoQueryItens.Edit;
+bancoQueryProdutos.Edit;
+bancoQueryProdutosESTOQUE.AsFloat:=bancoQueryProdutosESTOQUE.AsFloat - bancoQueryItensQTDE.AsFloat;
+bancoQueryProdutos.Post;
+bancoQueryItens.Delete;
+end;
+bancoQueryCompra.Delete;
+end;
+
 end;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);
@@ -97,26 +136,25 @@ end;
 
 procedure TfrmCompra.btnSalvarClick(Sender: TObject);
 begin
- bancoQueryItens.First;
+  bancoQueryItens.First;
   var
     i: integer;
   for i := 1 to bancoQueryItens.RecordCount do
   begin
-;
-     if bancoQueryProdutos.Locate('ID_PRODUTO',
+
+    if bancoQueryProdutos.Locate('ID_PRODUTO',
       bancoQueryItensID_PRODUTO.AsInteger, []) then
     begin
-        bancoQueryItens.Edit;
-    bancoQueryProdutos.Edit
-    bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger +
-      bancoQueryItensQTDE.AsInteger;
-    bancoQueryProdutos.Post;
+      bancoQueryItens.Edit;
+      bancoQueryProdutos.Edit;
+      bancoQueryProdutosESTOQUE.AsInteger := bancoQueryProdutosESTOQUE.AsInteger
+        + bancoQueryItensQTDE.AsInteger;
+      bancoQueryProdutos.Post;
 
-    ShowMessage('Venda feita com sucesso!' +
-      bancoQueryItensID_PRODUTO.AsString);
-    bancoQueryItens.Next;
-     end;
+      bancoQueryItens.Next;
+    end;
   end;
+  ShowMessage('Venda feita com sucesso!');
 end;
 
 procedure TfrmCompra.DBEdit3Enter(Sender: TObject);

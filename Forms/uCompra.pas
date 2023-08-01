@@ -46,6 +46,7 @@ type
     DBLookupComboBox2: TDBLookupComboBox;
     bancoQueryItensSUBTOTAL: TAggregateField;
     bancoQueryProdutosESTOQUE: TFMTBCDField;
+    DBNavigator1: TDBNavigator;
     procedure FormActivate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -54,6 +55,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure btnCancelarProdutoClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     postCompra: integer;
   public
@@ -68,6 +70,12 @@ implementation
 {$R *.dfm}
 
 uses uDataModule;
+
+procedure TfrmCompra.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  bancoQueryCompra.Cancel;
+end;
 
 procedure TfrmCompra.btnCancelarProdutoClick(Sender: TObject);
 begin
@@ -85,9 +93,29 @@ begin
 end;
 
 procedure TfrmCompra.btnDeletarClick(Sender: TObject);
+var
+  i: integer;
 begin
-  inherited;
-  bancoQueryItens.Next;
+  if MessageDlg('Deseja estornar venda?', TMsgDlgType.mtInformation,
+    [mbOk, mbNo], 0) = mrOk then
+  begin
+    if bancoQueryProdutos.Locate('ID_PRODUTO',
+      bancoQueryItensID_PRODUTO.AsInteger, []) then
+    begin
+      for i := 1 to bancoQueryItens.RecordCount do
+      begin
+        bancoQueryItens.First;
+        bancoQueryItens.Edit;
+        bancoQueryProdutos.Edit;
+        bancoQueryProdutosESTOQUE.AsFloat := bancoQueryProdutosESTOQUE.AsFloat -
+          bancoQueryItensQTDE.AsFloat;
+        bancoQueryProdutos.Post;
+        bancoQueryItens.Delete;
+      end;
+    end;
+    bancoQueryCompra.Delete;
+  end;
+
 end;
 
 procedure TfrmCompra.btnInserirProdutoClick(Sender: TObject);

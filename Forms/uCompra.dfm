@@ -14,6 +14,9 @@ inherited frmCompra: TfrmCompra
     inherited btnSalvar: TBitBtn
       OnClick = btnSalvarClick
     end
+    inherited btnCancelar: TBitBtn
+      OnClick = btnCancelarClick
+    end
   end
   inherited Panel2: TPanel
     Height = 209
@@ -186,6 +189,14 @@ inherited frmCompra: TfrmCompra
       ExplicitLeft = -212
       ExplicitTop = 336
     end
+  end
+  object DBNavigator1: TDBNavigator [4]
+    Left = 612
+    Top = 502
+    Width = 240
+    Height = 25
+    DataSource = DataSourceCompra
+    TabOrder = 4
   end
   inherited bancoQueryItens: TFDQuery
     Active = True
